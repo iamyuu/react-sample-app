@@ -1,5 +1,21 @@
 import * as React from 'react'
-import {Flex, Heading, Link} from '@chakra-ui/react'
+import {Flex, Heading, Link, Badge} from '@chakra-ui/react'
+import {useTodo, todosSelector} from '~/store/todo'
+
+function TodoLink() {
+  const todos = useTodo(todosSelector)
+
+  return (
+    <Link href='/todo' position='relative'>
+      Todo
+      {todos.length >= 1 ? (
+        <Badge rounded='full' position='absolute' top='0' right='-2'>
+          {todos.length}
+        </Badge>
+      ) : null}
+    </Link>
+  )
+}
 
 export default function Navigation() {
   return (
@@ -9,7 +25,7 @@ export default function Navigation() {
       </Heading>
 
       <Flex as='nav' gridGap='2' fontWeight='semibold' fontSize='2xl'>
-        <Link href='/todo'>Todo</Link>
+        <TodoLink />
       </Flex>
     </Flex>
   )
