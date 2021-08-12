@@ -1,38 +1,46 @@
 import * as React from 'react'
-import {ChakraProvider, extendTheme, Container} from '@chakra-ui/react'
+import {Container} from '@chakra-ui/react'
+import {useRoutes, Navigate} from 'react-router-dom'
+import AppProviders from './context'
 import Navigation from './components/navigation'
 import TodoScreen from './screens/todo'
+import NotFoundScreen from './screens/not-found'
 
-const chakraTheme = extendTheme({
-  config: {
-    initialColorMode: 'dark',
-    useSystemColorMode: false,
-  },
-})
+function AppRoutes() {
+  // return (
+  //   <Routes>
+  //     <Route path='/' element={<Navigate to='/todo' replace />} />
+  //     <Route path='/todo' element={<TodoScreen />} />
+  //     <Route path='*' element={<NotFoundScreen />} />
+  //   </Routes>
+  // )
 
-const property = {
-  imageUrl: 'https://bit.ly/2Z4KKcF',
-  imageAlt: 'Rear view of modern home with pool',
-  beds: 3,
-  baths: 2,
-  title: 'Modern home in city center in the heart of historic Los Angeles',
-  formattedPrice: '$1,900.00',
-  reviewCount: 34,
-  rating: 4,
+  return useRoutes([
+    {
+      path: '/',
+      element: <Navigate to='/todo' replace />,
+    },
+    {
+      path: '/todo',
+      element: <TodoScreen />,
+    },
+    {
+      path: '*',
+      element: <NotFoundScreen />,
+    },
+  ])
 }
 
-function App() {
+export default function App() {
   return (
-    <ChakraProvider theme={chakraTheme} resetCSS>
+    <AppProviders>
       <Container maxW='container.lg'>
         <Navigation />
 
         <main>
-          <TodoScreen />
+          <AppRoutes />
         </main>
       </Container>
-    </ChakraProvider>
+    </AppProviders>
   )
 }
-
-export default App

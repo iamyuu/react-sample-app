@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {Flex, Checkbox, Input, Button, List, ListItem, Text} from '@chakra-ui/react'
+import {Box, Heading, Flex, Checkbox, Input, Button, List, ListItem, Text} from '@chakra-ui/react'
 import {useTodo, todosSelector, addTodoSelector, removeTodoSelector} from '~/store/todo'
 
 function TodoForm() {
@@ -45,9 +45,10 @@ function TodoList() {
 
 export default function TodoScreen() {
   return (
-    <>
+    <Box>
+      <Heading>Todo</Heading>
       <TodoForm />
       <TodoList />
-    </>
+    </Box>
   )
 }
