@@ -1,9 +1,11 @@
 import * as React from 'react'
 import {useQuery} from 'react-query'
 import {ErrorBoundary} from 'react-error-boundary'
-import {Tbody, Tr, Td, Switch, Alert, AlertIcon, AlertTitle, AlertDescription, Button} from '@chakra-ui/react'
+import {Tr, Td, Switch, Alert, AlertIcon, AlertTitle, AlertDescription, Button} from '@chakra-ui/react'
 import Layout from '~/components/layout'
 import Table from '~/components/table'
+
+const employeeSheetsTitle = ['Name', 'Job Title', 'Status']
 
 function EmployeeFallback(props) {
   return (
@@ -18,18 +20,14 @@ function EmployeeFallback(props) {
   )
 }
 
-const employeeTableHeader = ['Name', 'Job Title', 'Status']
-
 function EmployeeLoading() {
   return (
-    <Table header={employeeTableHeader}>
-      <Tbody>
-        <Tr>
-          <Td colSpan={4} textAlign='center'>
-            Loading...
-          </Td>
-        </Tr>
-      </Tbody>
+    <Table sheetsTitle={employeeSheetsTitle}>
+      <Tr>
+        <Td colSpan={3} textAlign='center'>
+          Loading...
+        </Td>
+      </Tr>
     </Table>
   )
 }
@@ -38,18 +36,16 @@ function EmployeeTable() {
   const {data} = useQuery('/employee')
 
   return (
-    <Table header={employeeTableHeader}>
-      <Tbody>
-        {data.map(employee => (
-          <Tr key={employee.id}>
-            <Td>{employee.name}</Td>
-            <Td>{employee.job_title}</Td>
-            <Td>
-              <Switch defaultChecked={employee.status} />
-            </Td>
-          </Tr>
-        ))}
-      </Tbody>
+    <Table sheetsTitle={employeeSheetsTitle}>
+      {data.map(employee => (
+        <Tr key={employee.id}>
+          <Td>{employee.name}</Td>
+          <Td>{employee.job_title}</Td>
+          <Td>
+            <Switch defaultChecked={employee.status} />
+          </Td>
+        </Tr>
+      ))}
     </Table>
   )
 }

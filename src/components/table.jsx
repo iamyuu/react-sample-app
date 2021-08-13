@@ -1,20 +1,20 @@
 import * as React from 'react'
-import {Table as ChakraTable, Thead, Tfoot, Tr, Th} from '@chakra-ui/react'
+import {Table as ChakraTable, Thead, Tbody, Tfoot, Tr, Th} from '@chakra-ui/react'
 
 export default function Table(props) {
   return (
     <ChakraTable variant='simple'>
       <Thead>
         <Tr>
-          {props.header.map(val => (
+          {props.sheetsTitle.map(val => (
             <Th key={val}>{val}</Th>
           ))}
         </Tr>
       </Thead>
-      {props.children}
+      <Tbody>{props.children}</Tbody>
       <Tfoot>
         <Tr>
-          {props.header.map(val => (
+          {props.sheetsTitle.map(val => (
             <Th key={val}>{val}</Th>
           ))}
         </Tr>
