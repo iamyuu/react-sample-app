@@ -1,11 +1,11 @@
 import * as React from 'react'
-import {Box, Heading, Text} from '@chakra-ui/react'
+import {Text} from '@chakra-ui/react'
+import Layout from '~/components/layout'
 
 export default function NotFoundScreen() {
   return (
-    <Box textAlign='center'>
-      <Heading>404</Heading>
+    <Layout title='404'>
       <Text>Please double check the URL entered and try again.</Text>
-    </Box>
+    </Layout>
   )
 }

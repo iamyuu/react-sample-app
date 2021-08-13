@@ -7,14 +7,6 @@ import TodoScreen from './screens/todo'
 import NotFoundScreen from './screens/not-found'
 
 function AppRoutes() {
-  // return (
-  //   <Routes>
-  //     <Route path='/' element={<Navigate to='/todo' replace />} />
-  //     <Route path='/todo' element={<TodoScreen />} />
-  //     <Route path='*' element={<NotFoundScreen />} />
-  //   </Routes>
-  // )
-
   return useRoutes([
     {
       path: '/',
@@ -36,10 +28,7 @@ export default function App() {
     <AppProviders>
       <Container maxW='container.lg'>
         <Navigation />
-
-        <main>
-          <AppRoutes />
-        </main>
+        <AppRoutes />
       </Container>
     </AppProviders>
   )
