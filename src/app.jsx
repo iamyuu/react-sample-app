@@ -4,6 +4,7 @@ import {useRoutes, Navigate} from 'react-router-dom'
 import AppProviders from './context'
 import Navigation from './components/navigation'
 import TodoScreen from './screens/todo'
+import EmployeeScreen from './screens/employee'
 import NotFoundScreen from './screens/not-found'
 
 function AppRoutes() {
@@ -15,6 +16,10 @@ function AppRoutes() {
     {
       path: '/todo',
       element: <TodoScreen />,
+    },
+    {
+      path: '/employee',
+      element: <EmployeeScreen />,
     },
     {
       path: '*',
