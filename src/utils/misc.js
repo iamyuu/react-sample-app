@@ -5,3 +5,7 @@ export function uuidv4() {
     return v.toString(16)
   })
 }
+
+export function pipe(...fns) {
+  return fns.reduce((a, b) => arg => b(a(arg)))
+}
