@@ -3,6 +3,14 @@ import {Flex, Checkbox, Input, Button, List, ListItem, Text} from '@chakra-ui/re
 import Layout from '~/components/layout'
 import {useTodo, todosSelector, addTodoSelector, removeTodoSelector} from '~/store/todo'
 
+function TodoEmptyState() {
+  return (
+    <Text fontSize='lg' textAlign='center' mt='4'>
+      Add what you need to be done
+    </Text>
+  )
+}
+
 function TodoForm() {
   const addTodo = useTodo(addTodoSelector)
 
@@ -32,12 +40,18 @@ function RemoveTodo(props) {
 function TodoList() {
   const todos = useTodo(todosSelector)
 
+  if (todos.length < 1) {
+    return <TodoEmptyState />
+  }
+
   return (
     <List mt='2'>
       {todos.map(val => (
         <ListItem key={val.id} display='flex' alignItems='center' gridGap='2'>
           <RemoveTodo id={val.id} />
-          <Text as='span'>{val.title}</Text>
+          <Text as='span' fontSize='lg'>
+            {val.title}
+          </Text>
         </ListItem>
       ))}
     </List>

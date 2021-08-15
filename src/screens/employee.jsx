@@ -1,11 +1,19 @@
 import * as React from 'react'
 import {ErrorBoundary} from 'react-error-boundary'
-import {Tr, Td, Switch, Alert, AlertIcon, AlertTitle, AlertDescription, Button} from '@chakra-ui/react'
+import {Tr, Td, Switch, Alert, AlertIcon, AlertTitle, AlertDescription, Button, Text} from '@chakra-ui/react'
 import Layout from '~/components/layout'
 import Table from '~/components/table'
 import {useEmployeeList, useEmployeeChangeStatus} from '~/services/employee'
 
 const employeeSheetsTitle = ['Name', 'Job Title', 'Status']
+
+function EmployeeEmptyState() {
+  return (
+    <Text fontSize='lg' textAlign='center' mt='4'>
+      Employee is empty
+    </Text>
+  )
+}
 
 function EmployeeFallback(props) {
   return (
@@ -38,6 +46,10 @@ function EmployeeTable() {
 
   const handleChangeStatus = employeeId => event => {
     mutationStatus.mutate({employeeId, newStatus: event.currentTarget.checked})
+  }
+
+  if (data.length < 1) {
+    return <EmployeeEmptyState />
   }
 
   return (
