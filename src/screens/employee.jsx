@@ -41,20 +41,20 @@ function EmployeeLoading() {
 }
 
 function EmployeeTable() {
-  const {data} = useEmployeeList()
+  const {employees} = useEmployeeList()
   const mutationStatus = useEmployeeChangeStatus()
 
   const handleChangeStatus = employeeId => event => {
     mutationStatus.mutate({employeeId, newStatus: event.currentTarget.checked})
   }
 
-  if (data.length < 1) {
+  if (employees.length < 1) {
     return <EmployeeEmptyState />
   }
 
   return (
     <Table sheetsTitle={employeeSheetsTitle}>
-      {data.map(employee => (
+      {employees.map(employee => (
         <Tr key={employee.id}>
           <Td>{employee.name}</Td>
           <Td>{employee.job_title}</Td>

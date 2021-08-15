@@ -2,7 +2,12 @@ import {useQuery, useMutation, useQueryClient} from 'react-query'
 import httpClient from '~/utils/http-client'
 
 export function useEmployeeList(options = {}) {
-  return useQuery('employee', options)
+  const {data, ...queryResult} = useQuery('employee', options)
+
+  return {
+    employees: data,
+    ...queryResult,
+  }
 }
 
 export function useEmployeeChangeStatus(options = {}) {
