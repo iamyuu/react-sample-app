@@ -10,6 +10,26 @@ export function useEmployeeList(options = {}) {
   }
 }
 
+export function useEmployeeById(employeeId, options = {}) {
+  const {data, ...queryResult} = useQuery(`employee/${employeeId}`, options)
+
+  return {
+    employee: data,
+    ...queryResult,
+  }
+}
+
+export function useEmployeeUpdate(options = {}) {
+  return useMutation(
+    updates =>
+      httpClient(`/employee/${updates.employeeId}`, {
+        method: 'PATCH',
+        data: updates,
+      }),
+    options,
+  )
+}
+
 export function useEmployeeChangeStatus(options = {}) {
   const queryClient = useQueryClient()
 
