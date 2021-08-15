@@ -1,9 +1,9 @@
 import * as React from 'react'
-import {useQuery} from 'react-query'
 import {ErrorBoundary} from 'react-error-boundary'
 import {Tr, Td, Switch, Alert, AlertIcon, AlertTitle, AlertDescription, Button} from '@chakra-ui/react'
 import Layout from '~/components/layout'
 import Table from '~/components/table'
+import {useEmployeeList, useEmployeeChangeStatus} from '~/services/employee'
 
 const employeeSheetsTitle = ['Name', 'Job Title', 'Status']
 
@@ -33,7 +33,12 @@ function EmployeeLoading() {
 }
 
 function EmployeeTable() {
-  const {data} = useQuery('/employee')
+  const {data} = useEmployeeList()
+  const mutationStatus = useEmployeeChangeStatus()
+
+  const handleChangeStatus = employeeId => event => {
+    mutationStatus.mutate({employeeId, newStatus: event.currentTarget.checked})
+  }
 
   return (
     <Table sheetsTitle={employeeSheetsTitle}>
@@ -42,7 +47,7 @@ function EmployeeTable() {
           <Td>{employee.name}</Td>
           <Td>{employee.job_title}</Td>
           <Td>
-            <Switch defaultChecked={employee.status} />
+            <Switch defaultChecked={employee.status} isDisabled={mutationStatus.isLoading} onChange={handleChangeStatus(employee.id)} />
           </Td>
         </Tr>
       ))}
