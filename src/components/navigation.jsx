@@ -10,7 +10,7 @@ function TodoLink() {
     <Link to='/todo' position='relative'>
       Todo
       {todos.length >= 1 ? (
-        <Badge variant='solid' colorScheme='blue' rounded='full' position='absolute' top='0' right='-2'>
+        <Badge variant='solid' color='gray.50' bg='blue.400' rounded='full' position='absolute' top='0' right='-2'>
           {todos.length}
         </Badge>
       ) : null}
