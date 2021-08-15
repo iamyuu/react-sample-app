@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {Table as ChakraTable, Thead, Tbody, Tfoot, Tr, Th} from '@chakra-ui/react'
+import {Table as ChakraTable, Thead, Tbody, Tfoot, Tr, Th, Td} from '@chakra-ui/react'
 
 export default function Table(props) {
   return (
@@ -11,7 +11,17 @@ export default function Table(props) {
           ))}
         </Tr>
       </Thead>
-      <Tbody>{props.children}</Tbody>
+      <Tbody>
+        {props.isLoading ? (
+          <Tr>
+            <Td colSpan={props.sheetsTitle.length} textAlign='center'>
+              Loading...
+            </Td>
+          </Tr>
+        ) : (
+          props.children
+        )}
+      </Tbody>
       <Tfoot>
         <Tr>
           {props.sheetsTitle.map(val => (
