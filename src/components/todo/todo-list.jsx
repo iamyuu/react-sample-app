@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {List, ListItem, Text, Checkbox} from '@chakra-ui/react'
-import {useTodo, todosSelector, removeTodoSelector} from '~/store/todo'
+import {useTodoStore, todosSelector, removeTodoSelector} from '~/store/todo'
 
 function TodoEmptyState() {
   return (
@@ -11,12 +11,12 @@ function TodoEmptyState() {
 }
 
 function RemoveTodo(props) {
-  const removeTodo = useTodo(removeTodoSelector)
+  const removeTodo = useTodoStore(removeTodoSelector)
   return <Checkbox onChange={() => removeTodo(props.id)} />
 }
 
 export function TodoList() {
-  const todos = useTodo(todosSelector)
+  const todos = useTodoStore(todosSelector)
 
   if (todos.length < 1) {
     return <TodoEmptyState />

@@ -2,7 +2,7 @@ import {persist} from 'zustand/middleware'
 import createStore from '~/utils/create-store'
 import {uuidv4} from '~/utils/misc'
 
-export const useTodo = createStore(
+export const useTodoStore = createStore(
   persist(
     set => ({
       todos: [],
@@ -30,4 +30,4 @@ export const useTodo = createStore(
   ),
 )
 
-export default useTodo
+export default useTodoStore

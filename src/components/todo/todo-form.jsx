@@ -1,9 +1,9 @@
 import * as React from 'react'
 import {Flex, Input, Button} from '@chakra-ui/react'
-import {useTodo, addTodoSelector} from '~/store/todo'
+import {useTodoStore, addTodoSelector} from '~/store/todo'
 
 export function TodoForm() {
-  const addTodo = useTodo(addTodoSelector)
+  const addTodo = useTodoStore(addTodoSelector)
 
   function hanndleSubmit(event) {
     event.preventDefault()

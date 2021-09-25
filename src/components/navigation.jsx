@@ -1,10 +1,10 @@
 import * as React from 'react'
 import {Flex, Badge} from '@chakra-ui/react'
-import {useTodo, todosSelector} from '~/store/todo'
+import {useTodoStore, todosSelector} from '~/store/todo'
 import Link from './link'
 
 function TodoLink() {
-  const todos = useTodo(todosSelector)
+  const todos = useTodoStore(todosSelector)
 
   return (
     <Link to='/todo' position='relative'>
